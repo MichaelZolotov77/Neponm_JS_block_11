@@ -48,9 +48,13 @@ function handleKey(e) {
 
 function setInfo(mapData) {
   console.log(mapData);
+  const { lat, lng, country, region, timezone } = mapData.location;
 
   ipInfo.innerText = mapData.ip;
-  locationInfo.innerText = mapData.location.country + " " + mapData.location.region;
-  timezoneInfo.innerText = mapData.location.timezone;
+  locationInfo.innerText = country + " " + region;
+  timezoneInfo.innerText = timezone;
   ispInfo.innerText = mapData.isp;
+
+  map.setView([lat, lng]);
+  L.marker([lat, lng], { icon: markerIcon }).addTo(map);
 }
