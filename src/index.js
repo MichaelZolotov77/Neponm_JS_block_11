@@ -60,7 +60,3 @@ function setInfo(mapData) {
     addOffset(map);
   }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  getAddress("95.24.81.70").then(setInfo);
-});
