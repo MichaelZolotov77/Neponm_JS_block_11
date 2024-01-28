@@ -1,6 +1,6 @@
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { addTileLayer, getAddress, validateIp } from "./helpers";
+import { addOffset, addTileLayer, getAddress, validateIp } from "./helpers";
 import icon from "../images/icon-location.svg";
 
 const ipInput = document.querySelector(".search-bar__input");
@@ -54,4 +54,13 @@ function setInfo(mapData) {
 
   map.setView([lat, lng]);
   L.marker([lat, lng], { icon: markerIcon }).addTo(map);
+
+  // функция сработает, если ширина экрана меньше 1024px
+  if (matchMedia("(max-width: 1023px)").matches) {
+    addOffset(map);
+  }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  getAddress("95.24.81.70").then(setInfo);
+});
